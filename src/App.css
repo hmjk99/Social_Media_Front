@@ -6,6 +6,16 @@
   height: 40vmin;
   pointer-events: none;
 }
+.back:hover{
+cursor: pointer;
+color: grey;
+}
+.delete_modal {
+  position: fixed;
+  top:30%;
+  left:30%;
+  background-color: rgb(237, 227, 227);
+}
 .edit-button{
 font-size: 40px;
 }

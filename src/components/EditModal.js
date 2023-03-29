@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import Edit from "./Edit.js";
+import Delete from './Delete.js';
 const EditModal = (props) => {
   const [showEdit, setShowEdit] = useState("");
 const toggleEdit = (id) => {
@@ -17,13 +18,7 @@ const toggleEdit = (id) => {
         <>
           <div className="modal">
             <Edit each={props.each} handleEdit={props.handleEdit} />
-            <button
-              onClick={() => {
-                props.handleDelete(props.each);
-              }}
-            >
-              Delete
-            </button>
+            <Delete each={props.each} handleDelete={props.handleDelete} />
           </div>
         </>
       ) : null}
