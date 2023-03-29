@@ -17,7 +17,7 @@ const toggleEdit = (id) => {
       {showEdit === props.each._id ? (
         <>
           <div className="modal">
-            <Edit each={props.each} handleEdit={props.handleEdit} />
+            <Edit each={props.each} handleEdit={props.handleEdit} toggleEdit={toggleEdit} />
             <Delete each={props.each} handleDelete={props.handleDelete} />
           </div>
         </>

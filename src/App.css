@@ -23,11 +23,16 @@ font-size: 40px;
  cursor: pointer;
  color:grey;
 }
+.edit_modal{
+  position: fixed;
+    top: 30%;
+    left: 30%;
+    background-color: rgb(237, 227, 227);
+}
 .modal{
   position: absolute;
   z-index: 1;
-  width:15rem;
-  height:20rem;
+  width:7rem;
   background-color: grey;
 }
 @media (prefers-reduced-motion: no-preference) {
