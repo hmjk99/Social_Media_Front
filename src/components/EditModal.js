@@ -3,7 +3,7 @@ import Edit from "./Edit.js";
 import Delete from './Delete.js';
 const EditModal = (props) => {
   const [showEdit, setShowEdit] = useState("");
-const toggleEdit = (id) => {
+const toggleEditShow = (id) => {
   showEdit === id ?
   setShowEdit("")
   : setShowEdit(id)
@@ -11,13 +11,13 @@ const toggleEdit = (id) => {
 
   return (
     <div>
-      <p onClick={() => toggleEdit(props.each._id)} className="edit-button">
+      <p onClick={() => toggleEditShow(props.each._id)} className="edit-button">
         ...
       </p>
       {showEdit === props.each._id ? (
         <>
           <div className="modal">
-            <Edit each={props.each} handleEdit={props.handleEdit} toggleEdit={toggleEdit} />
+            <Edit each={props.each} handleEdit={props.handleEdit} toggleEditShow={toggleEditShow} />
             <Delete each={props.each} handleDelete={props.handleDelete} />
           </div>
         </>

@@ -11,7 +11,7 @@ const Edit = (props) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     props.handleEdit(posts);
-    props.toggleEdit("")
+    props.toggleEditShow("")
   };
 
   const toggleEdit = (id) => {
@@ -51,7 +51,7 @@ const Edit = (props) => {
           <br />
           <br />
           <label htmlFor="text">Write a caption:</label>
-          <input type="text" name="text" onChange={handleChange} value={posts.date}/>
+          <input type="text" name="text" onChange={handleChange} value={posts.text}/>
           <br />
           <br />
           <input type="submit" />
