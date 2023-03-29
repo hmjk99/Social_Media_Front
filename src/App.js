@@ -14,8 +14,8 @@ const App=()=>{
       setPosts(response.data)
     })
   }
-  const handleCreate = () =>{
-    axios.post('http://localhost:3000/').then((response)=>{
+  const handleCreate = (data) =>{
+    axios.post('http://localhost:3000/', data).then((response)=>{
       let newPost = [...posts, response.data]
       setPosts(newPost)
     })
