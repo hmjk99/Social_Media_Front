@@ -6,7 +6,20 @@
   height: 40vmin;
   pointer-events: none;
 }
-
+.edit-button{
+font-size: 40px;
+}
+.edit-button:hover{
+ cursor: pointer;
+ color:grey;
+}
+.modal{
+  position: absolute;
+  z-index: 1;
+  width:15rem;
+  height:20rem;
+  background-color: grey;
+}
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;

@@ -2,6 +2,7 @@ import {useState, useEffect} from 'react'
 import axios from 'axios'
 import Posts from './components/Posts'
 import Add from './components/Add'
+import EditModal from './components/EditModal'
 import './App.css';
 
 const App=()=>{
@@ -46,9 +47,14 @@ const App=()=>{
       <h1>React App</h1>
       <Add handleCreate={handleCreate}/>
       {posts.map((each)=>{
-        return(
-          <Posts each={each}/>
-        )
+        return (
+          <div>
+            <EditModal each={each} 
+            handleEdit={handleEdit} 
+            handleDelete={handleDelete} />
+            <Posts each={each} />
+          </div>
+        );
       })}
     </div>
   );
