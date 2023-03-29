@@ -1,12 +1,9 @@
+import Carousel from './Carousel'
 const Posts = (props)=>{
     return(
         <div className="Post">
             <h3>{props.each.date}</h3>
-            {props.each.image.map((img)=>{
-                return(
-                    <img src={img}/>
-                )
-            })}
+            <Carousel each={props.each} />
             <span>Likes: {props.each.likes}</span>
             {props.each.tags.map((tag)=>{
                 return(
