@@ -2,6 +2,7 @@ import {useState, useEffect} from 'react'
 import axios from 'axios'
 import Posts from './components/Posts'
 import Add from './components/Add'
+import Edit from './components/Edit'
 import './App.css';
 
 const App=()=>{
@@ -47,7 +48,11 @@ const App=()=>{
       <Add handleCreate={handleCreate}/>
       {posts.map((each)=>{
         return(
-          <Posts each={each}/>
+          <div>
+            <Posts each={each}/>
+            <Edit each={each} handleEdit={handleEdit}/>
+            <button onClick={()=>{handleDelete(each)}}>Delete</button>
+          </div>
         )
       })}
     </div>
