@@ -4,13 +4,16 @@ import Posts from './components/Posts'
 import Add from './components/Add'
 import Edit from './components/Edit'
 import Users from './components/Users'
+import Nav from './components/Nav'
 import './App.css';
 
 const App=()=>{
   //============ states ==============//
   const [posts, setPosts] = useState([])
   const [users, setUsers] = useState([])
-
+  const [displayHome, setHome] = useState(true)
+  const [displayProfile, setProfile] = useState(false)
+  const [displayAdd, setAdd] = useState(false)
   //============ requests ==============//
   const getPost = () =>{
     axios.get('http://localhost:3000/').then((response)=>{
@@ -46,31 +49,50 @@ const App=()=>{
     })
   }
 
+  // =========== display functions ===========//
+
+  const showHome = () =>{
+    setHome(true)
+    setProfile(false)
+  }
+
+  const showProfile = () =>{
+    setHome(false)
+    setProfile(true)
+  }
+
+  const showAdd = () =>{
+    setAdd(!displayAdd)
+  }
+
   useEffect(()=>{
     getPost()
     getUser()
   }, [])
 
   return (
-    <div>
-      <h1>React App</h1>
-      <Add handleCreate={handleCreate}/>
-      {posts.map((each)=>{
-        return(
-          <div className='posts-content'>
-            <Posts each={each}/>
-            <Edit each={each} handleEdit={handleEdit}/>
-            <button onClick={()=>{handleDelete(each)}}>Delete</button>
-          </div>
-        )
-      })}
-      {users.map((each)=>{
-        return(
-          <div className='users-content'>
-            <Users each={each}/>
-          </div>
-        )
-      })}
+    <div id='whole'>
+      <Nav showHome={showHome} showProfile={showProfile}/>
+      {displayHome ?
+      <>
+        <button onClick={showAdd}>Add Post</button>
+        {displayAdd ? <Add handleCreate={handleCreate} showAdd={showAdd}/> : null}
+        {posts.map((each)=>{
+          return(
+            <div className='posts-content'>
+              <Posts each={each}/>
+              <Edit each={each} handleEdit={handleEdit}/>
+              <button onClick={()=>{handleDelete(each)}}>Delete</button>
+            </div>
+          )
+        })}
+      </> 
+      : null
+      }
+      {displayProfile ? 
+        <Users users={users}/>
+        : null
+      }
     </div>
   );
 }

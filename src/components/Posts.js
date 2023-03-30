@@ -4,12 +4,15 @@ const Posts = (props)=>{
         <div className="Post">
             <h3>{props.each.date}</h3>
             <Carousel each={props.each} />
-            <span>Likes: {props.each.likes}</span>
-            {props.each.tags.map((tag)=>{
-                return(
-                    <span>{tag}</span>
-                )
-            })}
+            <div className='likes-tags'>
+                <span>Likes: {props.each.likes}</span>
+                {props.each.tags.map((tag)=>{
+                    return(
+                        <span>{tag}</span>
+                    )
+                })}
+            </div>
+
             <p>{props.each.text}</p>
         </div>
     )

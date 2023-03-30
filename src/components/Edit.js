@@ -41,7 +41,7 @@ const Edit = (props) =>{
                 <br/>
                 <br/>
                 <label htmlFor='text'>Write a caption:</label>
-                <input type='text' name='text' onChange={handleChange} value={posts.date}/>
+                <input type='text' name='text' onChange={handleChange} value={posts.text}/>
                 <br/>
                 <br/>
                 <input type="submit"/>
