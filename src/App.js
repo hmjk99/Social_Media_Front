@@ -3,11 +3,13 @@ import axios from 'axios'
 import Posts from './components/Posts'
 import Add from './components/Add'
 import Edit from './components/Edit'
+import Users from './components/Users'
 import './App.css';
 
 const App=()=>{
   //============ states ==============//
   const [posts, setPosts] = useState([])
+  const [users, setUsers] = useState([])
 
   //============ requests ==============//
   const getPost = () =>{
@@ -38,8 +40,15 @@ const App=()=>{
     })
   }
 
+  const getUser = () =>{
+    axios.get('http://localhost:3000/user').then((response)=>{
+      setUsers(response.data)
+    })
+  }
+
   useEffect(()=>{
     getPost()
+    getUser()
   }, [])
 
   return (
@@ -48,10 +57,17 @@ const App=()=>{
       <Add handleCreate={handleCreate}/>
       {posts.map((each)=>{
         return(
-          <div>
+          <div className='posts-content'>
             <Posts each={each}/>
             <Edit each={each} handleEdit={handleEdit}/>
             <button onClick={()=>{handleDelete(each)}}>Delete</button>
+          </div>
+        )
+      })}
+      {users.map((each)=>{
+        return(
+          <div className='users-content'>
+            <Users each={each}/>
           </div>
         )
       })}
