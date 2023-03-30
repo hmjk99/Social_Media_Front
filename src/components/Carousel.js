@@ -18,15 +18,15 @@ const handleCurrentImage = (num) => {
   
 }
       return (
-        <>
+        <div className='post-image'>
         {props.each.image.length > 1 ?
         <button onClick={() => handleCurrentImage(-1)}>previous</button>
         : null}
-          <img src={props.each.image[currentImage]} alt="" />
+          <img className='img-post' src={props.each.image[currentImage]} alt="" />
           {props.each.image.length > 1 ?
           <button onClick={() => handleCurrentImage(+1)}>next</button>
           : null}
-        </>
+        </div>
       );
 
 
