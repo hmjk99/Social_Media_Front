@@ -1,14 +1,24 @@
 import Carousel from './Carousel'
 import EditModal from './EditModal'
 import Edit from "./Edit.js";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const Posts = (props)=>{
     const [displayEdit, setEdit] = useState(false)
+    const [posts, setPosts] = useState({...props.each})
     const showEdit = () => {
       setEdit(!displayEdit)
     };
-
+const handleLikes = (event) =>{
+    setPosts({ ...posts, [event.target.name]: event.target.value });
+    setLikes(event)
+}   
+const setLikes = (event) =>{
+    props.handleEdit(posts);
+}
+useEffect(() => {
+  setLikes()
+})
     return(
         <div className="Post">
             <div className='post-top'>
@@ -21,7 +31,12 @@ const Posts = (props)=>{
                 : 
                 <>
                     <div className='likes-tags'>
-                        <span>Likes: {props.each.likes}</span>
+                        <button name="likes" 
+                        value={parseInt(posts.likes) + 1} 
+                        onClick={handleLikes} > 
+                        <i className='bx bx-like'></i>
+                        like</button>
+                        <span>Likes: {posts.likes}</span>
                         {props.each.tags.map((tag)=>{
                             return(
                                 <span>{tag}</span>
