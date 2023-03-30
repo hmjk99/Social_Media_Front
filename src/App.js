@@ -2,13 +2,17 @@ import {useState, useEffect} from 'react'
 import axios from 'axios'
 import Posts from './components/Posts'
 import Add from './components/Add'
-import EditModal from './components/EditModal'
+import Users from './components/Users'
+import Nav from './components/Nav'
 import './App.css';
 
 const App=()=>{
   //============ states ==============//
   const [posts, setPosts] = useState([])
-
+  const [users, setUsers] = useState([])
+  const [displayHome, setHome] = useState(true)
+  const [displayProfile, setProfile] = useState(false)
+  const [displayAdd, setAdd] = useState(false)
   //============ requests ==============//
   const getPost = () =>{
     axios.get('http://localhost:3000/').then((response)=>{
@@ -38,24 +42,57 @@ const App=()=>{
     })
   }
 
+  const getUser = () =>{
+    axios.get('http://localhost:3000/user').then((response)=>{
+      setUsers(response.data)
+    })
+  }
+
+  // =========== display functions ===========//
+
+  const showHome = () =>{
+    setHome(true)
+    setProfile(false)
+  }
+
+  const showProfile = () =>{
+    setHome(false)
+    setProfile(true)
+  }
+
+  const showAdd = () =>{
+    setAdd(!displayAdd)
+  }
+
   useEffect(()=>{
     getPost()
+    getUser()
   }, [])
 
   return (
-    <div>
-      <h1>React App</h1>
-      <Add handleCreate={handleCreate}/>
-      {posts.map((each)=>{
-        return (
-          <div>
-            <EditModal each={each} 
-            handleEdit={handleEdit} 
-            handleDelete={handleDelete} />
-            <Posts each={each} />
-          </div>
-        );
-      })}
+    <div id='whole'>
+      <head>
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'/>
+      </head>
+      <Nav showHome={showHome} showProfile={showProfile}/>
+      {displayHome ?
+      <>
+        <button onClick={showAdd}>Add Post</button>
+        {displayAdd ? <Add handleCreate={handleCreate} showAdd={showAdd}/> : null}
+        {posts.map((each)=>{
+          return(
+            <div className='posts-content'>
+              <Posts each={each} handleEdit={handleEdit} handleDelete={handleDelete}/>
+            </div>
+          )
+        })}
+      </> 
+      : null
+      }
+      {displayProfile ? 
+        <Users users={users}/>
+        : null
+      }
     </div>
   );
 }

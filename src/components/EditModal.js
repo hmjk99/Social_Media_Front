@@ -1,28 +1,23 @@
 import React, {useState} from 'react'
-import Edit from "./Edit.js";
+
 import Delete from './Delete.js';
 const EditModal = (props) => {
-  const [showEdit, setShowEdit] = useState("");
-const toggleEditShow = (id) => {
-  showEdit === id ?
-  setShowEdit("")
-  : setShowEdit(id)
-};
-
+  const [displayModal, setModal] = useState(false)
+  const showModal = () =>{
+    setModal(!displayModal)
+  }
   return (
-    <div>
-      <p onClick={() => toggleEditShow(props.each._id)} className="edit-button">
-        ...
-      </p>
-      {showEdit === props.each._id ? (
+    <>
+      <i onClick={showModal} className='bx bx-dots-horizontal-rounded'></i>
+      {displayModal ?
         <>
           <div className="modal">
-            <Edit each={props.each} handleEdit={props.handleEdit} toggleEditShow={toggleEditShow} />
+            <button onClick={props.showEdit}>Edit</button>
             <Delete each={props.each} handleDelete={props.handleDelete} />
           </div>
-        </>
-      ) : null}
-    </div>
+        </> 
+      : null}
+    </>
   );
 }
 

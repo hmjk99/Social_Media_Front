@@ -11,20 +11,14 @@ const Edit = (props) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     props.handleEdit(posts);
-    props.toggleEditShow("")
+    props.showEdit()
   };
 
-  const toggleEdit = (id) => {
-    showEdit === id ? setShowEdit("") : setShowEdit(id);
-  };
 
   return (
-  
     
     <div id="edit">
-      <button onClick={() => toggleEdit(props.each._id)}>edit</button>
-        {showEdit === props.each._id ?
-      <div className="edit_modal">
+      <div>
         <form onSubmit={handleSubmit}>
           <label htmlFor="date">Date:</label>
           <input type="text" name="date" onChange={handleChange} value={posts.date} />
@@ -56,7 +50,7 @@ const Edit = (props) => {
           <br />
           <input type="submit" />
         </form>
-      </div> : null}
+      </div>
     </div>
   );
 };
