@@ -2,7 +2,6 @@ import { useState } from "react";
 
 const Edit = (props) => {
   const [posts, setPosts] = useState({ ...props.each });
-  const [showEdit, setShowEdit] = useState("");
 
   const handleChange = (event) => {
     setPosts({ ...posts, [event.target.name]: event.target.value });
