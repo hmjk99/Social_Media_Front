@@ -14,14 +14,6 @@ const Add = (props) =>{
             text:''
         }
     )
-    const handleChange = (event) =>{
-        setPosts({...posts, [event.target.name]: event.target.value})
-    }
-    const handleSubmit = (event) =>{
-        event.preventDefault()
-        props.handleCreate(posts)
-        props.showAdd()
-    }
     const handleTagCount = (event) => {
         event.preventDefault()
         setTagsNum(tagsNum + 1)
@@ -30,24 +22,33 @@ const Add = (props) =>{
         event.preventDefault()
         setImagesNum(imagesNum + 1)
     }
+    const handleChange = (event) =>{
+        setPosts({...posts, [event.target.name]: event.target.value})
+    }
+    const handleSubmit = (event) =>{
+    console.log(posts)
+        event.preventDefault()
+        props.handleCreate(posts)
+        props.showAdd()
+    }
     const handleTags = (event) =>{
       let newTags = tagsArray
         newTags.push(event.target.value)
-        setPosts({...posts, [event.target.name]:tagsArray})
+        setPosts({...posts, [event.target.name]:newTags})
         setTagsArray(newTags)
     }
     const handleImages = (event) => {
       let newImages = imagesArray
       newImages.push(event.target.value)
       setImagesArray(newImages)
-      setPosts({...posts, [event.target.name]:imagesArray})
+      setPosts({...posts, [event.target.name]:newImages})
     }
     const addTag = () =>{
         let tagCount = []
         for (let i=0; i < tagsNum; i++){
         tagCount.push(
         <>
-            <input key={i} type='text' name='tags' onChange={handleTags}/>
+            <input key={i} type='text' name='tags' onBlur={handleTags}/>
         </>
         )
         }
@@ -58,7 +59,7 @@ const Add = (props) =>{
         for (let i=0; i < imagesNum; i++){
             imageCount.push(
             <>
-                <input key={i} type='text' name='image' onChange={handleImages}/>
+                <input key={i} type='text' name='image' onBlur={handleImages}/>
             </>
                 )}
                 return imageCount

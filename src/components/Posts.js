@@ -10,12 +10,12 @@ const Posts = (props)=>{
       setEdit(!displayEdit)
     };
 const handleLikes = (event) =>{
-    setPosts({ ...posts, [event.target.name]: event.target.value});
-    setLikes(event)
-
+    const updatedPost = { ...posts, [event.target.name]: event.target.value}
+    setPosts(updatedPost);
+    setLikes(updatedPost)
+    console.log('clicked!',posts)
 }   
-const setLikes = (event) => {
-event.preventDefault()
+const setLikes = (posts) => {
     props.handleEdit(posts);
 }
     return(
@@ -35,7 +35,7 @@ event.preventDefault()
                         onClick={handleLikes} > 
                         <i className='bx bx-like'></i>
                         like</button>
-                        <span>Likes: {props.each.likes}</span>
+                        <span>Likes: {posts.likes}</span>
                         {props.each.tags.map((tag)=>{
                             return(
                                 <span>{tag}</span>
