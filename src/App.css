@@ -64,7 +64,8 @@ width: 3rem
   border-radius: 4%;
 }
 #edit{
-  width:80%;
+  width: 35rem;
+  text-align: center;
   padding: 4px;
 }
 #whole{
@@ -158,5 +159,8 @@ height:14rem;
 }
 .Post{
 width:96vw;
+}
+#edit{
+width:70%;
 }
 }
