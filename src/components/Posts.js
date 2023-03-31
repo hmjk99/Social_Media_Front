@@ -1,7 +1,7 @@
 import Carousel from './Carousel'
 import EditModal from './EditModal'
 import Edit from "./Edit.js";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 const Posts = (props)=>{
     const [displayEdit, setEdit] = useState(false)
@@ -10,15 +10,14 @@ const Posts = (props)=>{
       setEdit(!displayEdit)
     };
 const handleLikes = (event) =>{
-    setPosts({ ...posts, [event.target.name]: event.target.value });
-    setLikes(event)
+    const updatedPost = { ...posts, [event.target.name]: event.target.value}
+    setPosts(updatedPost);
+    setLikes(updatedPost)
+    console.log('clicked!',posts)
 }   
-const setLikes = (event) =>{
+const setLikes = (posts) => {
     props.handleEdit(posts);
 }
-useEffect(() => {
-  setLikes()
-})
     return(
         <div className="Post">
             <div className='post-top'>
