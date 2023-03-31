@@ -3,15 +3,31 @@
   height: 40vmin;
   pointer-events: none;
 }
+.add-button{
+  margin-bottom:.5rem;
+}
 .back:hover{
 cursor: pointer;
 color: grey;
+}
+.carousel-button{
+  border-radius:30%;
+  font-size: 1.5rem;
+  margin:5px;
+  line-height: 1rem;
+  border:none;
+  color:grey;
+}
+.carousel-button:active{
+background-color: rgba(149, 146, 146, 0.543);
 }
 .delete_modal {
   position: fixed;
   top:30%;
   left:30%;
-  background-color: rgb(237, 227, 227);
+  padding:3%;
+  background-color: rgba(197, 193, 193, 0.831);
+  border-radius:5px;
 }
 .edit-button{
 font-size: 40px;
@@ -25,17 +41,32 @@ width: 3rem
 }
 .edit_modal{
   position: fixed;
-    top: 30%;
-    left: 30%;
-    background-color: rgb(237, 227, 227);
+  top: 30%;
+  left: 30%;
+  background-color: rgb(237, 227, 227);
+}
+.elipse{
+  font-size: 26px;
+}
+.elipse:hover{
+  color: grey;
 }
 .modal{
+  display:flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: space-between;
   position: absolute;
   z-index: 1;
   width:7rem;
-  background-color: grey;
+  background-color: rgba(197, 193, 193, 0.55);
+  padding:3px;
+  border-radius: 4%;
 }
-
+#edit{
+  width:80%;
+  padding: 4px;
+}
 #whole{
   display: flex;
   flex-direction: column;
@@ -44,6 +75,7 @@ width: 3rem
 #nav{
   display: flex;
   justify-content: space-between;
+  margin-bottom: .5rem;
 }
 #home, #profile{
   margin: 1rem 3rem 
@@ -52,26 +84,78 @@ width: 3rem
   display: flex;
   flex-direction: column;
   align-items: center;
+  width:100%;
+  background-color: rgba(222, 216, 216, 0.654);
+  margin: auto;
+  margin-bottom:7px;
+  width:90%;
+  max-width: 35rem;
+  border-radius: 2px;
+}
+.like-button{
+width:20%;
 }
 .likes-tags{
   display: flex;
-  width: 23rem;
+  width: 80%;
   justify-content: space-between;
 }
 .img-post{
-  width: 30rem;
-  height: 30rem;
+  padding:5px;
+  height:20rem;width:25rem;
   object-fit: contain;
+  border-radius: 1rem;
+  background-color: rgba(204, 206, 208, 0.62);
+  align-self: center;
+}
+.modal-button{
+  margin:5px;
 }
 .post-image{
   display: flex;
   align-items: center;
+  justify-self: center;
+  margin-bottom: .3rem;
+  height: 50%;
+  width: 100%;
+}
+.post-tags{
+color:grey;
+}
+.post-text::-webkit-scrollbar {
+  display: none;
+}
+.post-text{
+display: flex;
+flex-wrap: wrap;
+width:60%;
+max-height: 6rem;
+overflow-y: scroll;
+line-height: 1.6rem;
+margin:5px;
+border-radius: 5px;
+border: 2px solid rgba(128, 128, 128, 0.46);
+background-color: rgb(220, 223, 225);
 }
 .post-top{
-  width: 30rem;
+  width: 80%;
   display: flex;
   justify-content: space-between;
+  padding:1rem;
 }
 .date{
   margin: 0
+}
+@media (max-width:600px){
+.modal{
+  right:2.5rem;
+}
+.img-post{
+min-width:15rem;
+width: 80%;
+height:14rem;
+}
+.Post{
+width:90vw;
+}
 }
