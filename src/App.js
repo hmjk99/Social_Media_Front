@@ -1,8 +1,11 @@
 import {useState, useEffect} from 'react'
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import Register from './components/register'
+import Login from './components/login'
+import Profile from './components/Profile'
 import axios from 'axios'
 import Posts from './components/Posts'
 import Add from './components/Add'
-import Users from './components/Users'
 import Nav from './components/Nav'
 import './App.css';
 
@@ -48,6 +51,25 @@ const App=()=>{
     })
   }
 
+
+  useEffect(()=>{
+    const info = {
+      name: "First Last",
+      age: 100
+    }
+
+    fetch("/exampleroute", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+        "x-access-token": localStorage.getItem("token")
+      },
+      body: JSON.stringify(info)
+    })
+    .then(res => res.json())
+    .then(data => console.log(data))
+  }, [])
+
   // =========== display functions ===========//
 
   const showHome = () =>{
@@ -70,6 +92,7 @@ const App=()=>{
   }, [])
 
   return (
+    <BrowserRouter>
     <div id='whole'>
       <head>
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'/>
@@ -90,10 +113,16 @@ const App=()=>{
       : null
       }
       {displayProfile ? 
-        <Users users={users}/>
+        <Profile users={users}/>
         : null
       }
+      {/* // ============== user auth routes ==========// */}
+        <Switch>
+          <Route path="/user/register" component={Register} exact />
+          <Route path="/user/login" component={Login} exact />
+        </Switch>
     </div>
+    </BrowserRouter>
   );
 }
 

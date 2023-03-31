@@ -1,4 +1,4 @@
-const Users = (props) =>{
+const Profile = (props) =>{
     return(
         <div className="users">
         {props.users.map((each)=>{
@@ -20,4 +20,4 @@ const Users = (props) =>{
     )
 }
 
-export default Users
+export default Profile
