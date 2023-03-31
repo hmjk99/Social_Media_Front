@@ -9,7 +9,7 @@ const EditModal = (props) => {
   return (
     <>
     <div>
-      <i onClick={showModal} className='bx bx-dots-horizontal-rounded'></i>
+      <i onClick={showModal} className='bx bx-dots-horizontal-rounded elipse'></i>
       {displayModal ?
         <>
           <div className="modal">

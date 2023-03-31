@@ -45,6 +45,12 @@ width: 3rem
   left: 30%;
   background-color: rgb(237, 227, 227);
 }
+.elipse{
+  font-size: 26px;
+}
+.elipse:hover{
+  color: grey;
+}
 .modal{
   display:flex;
   flex-flow: column;
@@ -82,23 +88,25 @@ width: 3rem
   background-color: rgba(222, 216, 216, 0.654);
   margin: auto;
   margin-bottom:7px;
-  border-radius:8px;
+  width:90%;
+  max-width: 35rem;
+  border-radius: 2px;
 }
 .like-button{
 width:20%;
 }
 .likes-tags{
   display: flex;
-  width: 70%;
+  width: 80%;
   justify-content: space-between;
 }
 .img-post{
-  width:18rem;
-  height:20rem;
   padding:5px;
+  height:20rem;width:25rem;
   object-fit: contain;
   border-radius: 1rem;
   background-color: rgba(204, 206, 208, 0.62);
+  align-self: center;
 }
 .modal-button{
   margin:5px;
@@ -106,7 +114,10 @@ width:20%;
 .post-image{
   display: flex;
   align-items: center;
+  justify-self: center;
   margin-bottom: .3rem;
+  height: 50%;
+  width: 100%;
 }
 .post-tags{
 color:grey;
@@ -117,12 +128,13 @@ color:grey;
 .post-text{
 display: flex;
 flex-wrap: wrap;
-width:20rem;
+width:60%;
 max-height: 6rem;
 overflow-y: scroll;
 line-height: 1.6rem;
 margin:5px;
 border-radius: 5px;
+border: 2px solid rgba(128, 128, 128, 0.46);
 background-color: rgb(220, 223, 225);
 }
 .post-top{
@@ -137,5 +149,13 @@ background-color: rgb(220, 223, 225);
 @media (max-width:600px){
 .modal{
   right:2.5rem;
+}
+.img-post{
+min-width:15rem;
+width: 80%;
+height:14rem;
+}
+.Post{
+width:90vw;
 }
 }

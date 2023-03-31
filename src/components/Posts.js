@@ -19,6 +19,7 @@ const setLikes = (posts) => {
     props.handleEdit(posts);
 }
     return(
+    <>
         <div className="Post">
             <div className='post-top'>
                 <h3 className='date'>{props.each.date}</h3>
@@ -49,6 +50,8 @@ const setLikes = (posts) => {
             }
 
         </div>
+        <div className="divider"></div>
+        </>
     )
 }
 
