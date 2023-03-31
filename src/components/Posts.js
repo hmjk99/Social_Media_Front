@@ -30,7 +30,7 @@ const setLikes = (posts) => {
                 : 
                 <>
                     <div className='likes-tags'>
-                        <button name="likes" 
+                        <button className='like-button' name="likes" 
                         value={parseInt(posts.likes) + 1} 
                         onClick={handleLikes} > 
                         <i className='bx bx-like'></i>
@@ -38,11 +38,13 @@ const setLikes = (posts) => {
                         <span>Likes: {posts.likes}</span>
                         {props.each.tags.map((tag)=>{
                             return(
-                                <span>{tag}</span>
+                                <span className='post-tags'>{tag}</span>
                             )
                         })}
                     </div>
-                    <p>{props.each.text}</p>                
+                    <div className="post-text">
+                    <p>{props.each.text}</p> 
+                    </div>
                 </>
             }
 

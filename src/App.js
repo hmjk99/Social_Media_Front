@@ -78,7 +78,7 @@ const App=()=>{
       <Nav showHome={showHome} showProfile={showProfile}/>
       {displayHome ?
       <>
-        <button onClick={showAdd}>Add Post</button>
+        <button className='add-button' onClick={showAdd}>Add Post</button>
         {displayAdd ? <Add handleCreate={handleCreate} showAdd={showAdd}/> : null}
         {posts.map((each)=>{
           return(

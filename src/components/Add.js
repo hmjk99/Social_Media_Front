@@ -48,6 +48,7 @@ const Add = (props) =>{
         for (let i=0; i < tagsNum; i++){
         tagCount.push(
         <>
+        <br />
             <input key={i} type='text' name='tags' onBlur={handleTags}/>
         </>
         )
@@ -59,6 +60,7 @@ const Add = (props) =>{
         for (let i=0; i < imagesNum; i++){
             imageCount.push(
             <>
+            <br />
                 <input key={i} type='text' name='image' onBlur={handleImages}/>
             </>
                 )}
