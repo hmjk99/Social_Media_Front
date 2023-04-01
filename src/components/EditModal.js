@@ -8,15 +8,17 @@ const EditModal = (props) => {
   }
   return (
     <>
-      <i onClick={showModal} className='bx bx-dots-horizontal-rounded'></i>
+    <div>
+      <i onClick={showModal} className='bx bx-dots-horizontal-rounded elipse'></i>
       {displayModal ?
         <>
           <div className="modal">
-            <button onClick={props.showEdit}>Edit</button>
+            <button className='modal-button' onClick={props.showEdit}>Edit</button>
             <Delete each={props.each} handleDelete={props.handleDelete} />
           </div>
         </> 
       : null}
+      </div>
     </>
   );
 }

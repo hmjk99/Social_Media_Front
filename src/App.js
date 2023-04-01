@@ -34,6 +34,7 @@ const App=()=>{
     })
   }
   const handleDelete = (data) =>{
+    console.log(data)
     axios.delete('http://localhost:3000/' + data._id).then(()=>{
       let newPost = posts.filter((each)=>{
         return each._id !== data._id
@@ -77,7 +78,7 @@ const App=()=>{
       <Nav showHome={showHome} showProfile={showProfile}/>
       {displayHome ?
       <>
-        <button onClick={showAdd}>Add Post</button>
+        <button className='add-button' onClick={showAdd}>Add Post</button>
         {displayAdd ? <Add handleCreate={handleCreate} showAdd={showAdd}/> : null}
         {posts.map((each)=>{
           return(

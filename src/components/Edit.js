@@ -2,7 +2,6 @@ import { useState } from "react";
 
 const Edit = (props) => {
   const [posts, setPosts] = useState({ ...props.each });
-  const [showEdit, setShowEdit] = useState("");
 
   const handleChange = (event) => {
     setPosts({ ...posts, [event.target.name]: event.target.value });
@@ -28,6 +27,7 @@ const Edit = (props) => {
           {posts.image.map((img) => {
             return (
               <>
+              <br />
                 <input type="text" name="image" onChange={handleChange} value={img} />
               </>
             );
@@ -38,6 +38,7 @@ const Edit = (props) => {
           {posts.tags.map((tag) => {
             return (
               <>
+              <br />
                 <input type="text" name="tags" onChange={handleChange} value={tag}/>
               </>
             );
