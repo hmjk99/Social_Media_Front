@@ -1,4 +1,4 @@
-import { useHistory } from 'react-router-dom'
+import { useHistory, Link } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 
 const Nav = (props)=>{
@@ -8,11 +8,11 @@ const Nav = (props)=>{
 
     const logout = async ()=> {
         localStorage.removeItem("token")
-        history.push("/user/login")
+        history.push("http://localhost:3000/login")
     }
 
     useEffect(()=>{
-        fetch("/getUsername", {
+        fetch("http://localhost:3000/getUsername", {
             headers: {
                 "x-access-token": localStorage.getItem("token")
             }
@@ -29,8 +29,8 @@ const Nav = (props)=>{
                 <div onClick={logout}>Logout</div>            
             </>
             : <>         
-                <h3 id='profile' onClick={props.showProfile}>Login</h3>
-                <div onClick={logout}>Register</div>                 
+                <div><Link to="/login">Login</Link></div>
+                <div><Link to="/register">Register</Link></div>               
             </>
             }
 

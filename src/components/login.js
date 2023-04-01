@@ -13,7 +13,7 @@ const Login = () =>{
             password: form[1].value
         }
 
-        fetch("/user/login", {
+        fetch("http://localhost:3000/login", {
             method: "POST",
             headers: {
                 "Content-type": "application/json",
@@ -27,7 +27,7 @@ const Login = () =>{
     }
 
     useEffect(()=>{
-        fetch("/user/getUsername", {
+        fetch("http://localhost:3000/getUsername", {
             headers: {
                 "x-access-token" : localStorage.getItem("token")
             }
@@ -39,7 +39,7 @@ const Login = () =>{
     return(
         <form onSubmit={event => handleLogin(event)}>
             <input required type="text" name="username"/>
-            <input required type="password"/>
+            <input required type="password" name="password"/>
             <input type="submit" value="Submit"/>
         </form>
     )

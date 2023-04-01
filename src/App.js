@@ -45,30 +45,30 @@ const App=()=>{
     })
   }
 
-  const getUser = () =>{
-    axios.get('http://localhost:3000/user').then((response)=>{
-      setUsers(response.data)
-    })
-  }
+  // const getUser = () =>{
+  //   axios.get('http://localhost:3000/').then((response)=>{
+  //     setUsers(response.data)
+  //   })
+  // }
 
 
-  useEffect(()=>{
-    const info = {
-      name: "First Last",
-      age: 100
-    }
+  // useEffect(()=>{
+  //   const info = {
+  //     name: "First Last",
+  //     age: 100
+  //   }
 
-    fetch("/exampleroute", {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-        "x-access-token": localStorage.getItem("token")
-      },
-      body: JSON.stringify(info)
-    })
-    .then(res => res.json())
-    .then(data => console.log(data))
-  }, [])
+  //   fetch("/user/getUsername", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-type": "application/json",
+  //       "x-access-token": localStorage.getItem("token")
+  //     },
+  //     body: JSON.stringify(info)
+  //   })
+  //   .then(res => res.json())
+  //   .then(data => console.log(data))
+  // }, [])
 
   // =========== display functions ===========//
 
@@ -88,7 +88,7 @@ const App=()=>{
 
   useEffect(()=>{
     getPost()
-    getUser()
+    // getUser()
   }, [])
 
   return (
@@ -100,7 +100,6 @@ const App=()=>{
       <Nav showHome={showHome} showProfile={showProfile}/>
       {displayHome ?
       <>
-        <button onClick={showAdd}>Add Post</button>
         {displayAdd ? <Add handleCreate={handleCreate} showAdd={showAdd}/> : null}
         {posts.map((each)=>{
           return(
@@ -118,8 +117,8 @@ const App=()=>{
       }
       {/* // ============== user auth routes ==========// */}
         <Switch>
-          <Route path="/user/register" component={Register} exact />
-          <Route path="/user/login" component={Login} exact />
+          <Route path="/register" component={Register} exact />
+          <Route path="/login" component={Login} exact />
         </Switch>
     </div>
     </BrowserRouter>

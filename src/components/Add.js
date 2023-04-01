@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 
 const Add = (props) =>{
     const [posts, setPosts] = useState(
@@ -10,6 +10,7 @@ const Add = (props) =>{
             text:''
         }
     )
+    const [username, setUsername] = useState(null)
 
     const handleChange = (event) =>{
         setPosts({...posts, [event.target.name]: event.target.value})
@@ -21,8 +22,21 @@ const Add = (props) =>{
         props.showAdd()
     }
 
+    useEffect(()=>{
+        fetch("/getUsername", {
+            headers: {
+                "x-access-token": localStorage.getItem("token")
+            }
+        })
+        .then(res => res.json())
+        .then(data => data.isLoggedIn ? setUsername(data.username): null)
+    }, [])
+
     return(
         <div id='add'>
+            {username ?
+            <>
+            <button onClick={props.showAdd}>Add Post</button>
             <form onSubmit={handleSubmit}>
                 <label htmlFor='date'>Date:</label>
                 <input type='text' name='date' onChange={handleChange} placeholder='mm/dd/yyyy'/>
@@ -41,7 +55,11 @@ const Add = (props) =>{
                 <br/>
                 <br/>
                 <input type="submit"/>
-            </form>
+            </form>           
+            </>
+            : null
+            }
+
         </div>
     )
 }
