@@ -12,7 +12,7 @@ import './App.css';
 const App=()=>{
   //============ states ==============//
   const [posts, setPosts] = useState([])
-  const [users, setUsers] = useState([])
+  const [user, setUser] = useState([])
   const [displayHome, setHome] = useState(true)
   const [displayProfile, setProfile] = useState(false)
   const [displayAdd, setAdd] = useState(false)
@@ -45,30 +45,29 @@ const App=()=>{
     })
   }
 
-  // const getUser = () =>{
-  //   axios.get('http://localhost:3000/').then((response)=>{
-  //     setUsers(response.data)
+  // ================== requests for user ===============//
+  const getUser = () =>{
+    axios.get('http://localhost:3000/user').then((response)=>{
+      setUser(response.data)
+    })
+  }
+
+  // const handleEditUser = (data) =>{
+  //   axios.put('http://localhost:3000/user/' + data._id, data).then(()=>{
+  //     let newUser = user.map((each)=>{
+  //       return each._id !== data._id ? each : data
+  //     })
+  //     setUser(newUser)
   //   })
   // }
-
-
-  // useEffect(()=>{
-  //   const info = {
-  //     name: "First Last",
-  //     age: 100
-  //   }
-
-  //   fetch("/user/getUsername", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-type": "application/json",
-  //       "x-access-token": localStorage.getItem("token")
-  //     },
-  //     body: JSON.stringify(info)
+  // const handleDeleteUser = (data) =>{
+  //   axios.delete('http://localhost:3000/user/' + data._id).then(()=>{
+  //     let newUser = user.filter((each)=>{
+  //       return each._id !== data._id
+  //     })
+  //     setUser(newUser)
   //   })
-  //   .then(res => res.json())
-  //   .then(data => console.log(data))
-  // }, [])
+  // }
 
   // =========== display functions ===========//
 
@@ -88,7 +87,7 @@ const App=()=>{
 
   useEffect(()=>{
     getPost()
-    // getUser()
+    getUser()
   }, [])
 
   return (
@@ -112,7 +111,7 @@ const App=()=>{
       : null
       }
       {displayProfile ? 
-        <Profile users={users}/>
+        <Profile user={user}/>
         : null
       }
       {/* // ============== user auth routes ==========// */}

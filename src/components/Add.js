@@ -23,7 +23,7 @@ const Add = (props) =>{
     }
 
     useEffect(()=>{
-        fetch("/getUsername", {
+        fetch("http://localhost:3000/getUsername", {
             headers: {
                 "x-access-token": localStorage.getItem("token")
             }

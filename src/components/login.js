@@ -1,47 +1,61 @@
-import { useHistory } from 'react-router-dom';
-import { useEffect } from "react"
+import { useHistory, Link } from 'react-router-dom';
+import { useState } from "react"
 
 const Login = () =>{
     let history = useHistory()
+    const [error, setError] = useState(null);
+    const [invalidMessage, setInvalid] = useState(false)
 
-    const handleLogin = (event) =>{
-        event.preventDefault()
-
-        const form = event.target
-        const user = {
-            username: form[0].value,
-            password: form[1].value
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+      
+        const response = await fetch("http://localhost:3000/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            username: e.target[0].value,
+            password: e.target[1].value,
+          })
+        })
+      
+        const data = await response.json()
+      
+        if (data.token) {
+          localStorage.setItem("token", data.token)
+          history.push("/")
+          window.location.reload();
+        } else {
+          setError(data.message)
+          setInvalid(true)
         }
+      }
 
-        fetch("http://localhost:3000/login", {
-            method: "POST",
-            headers: {
-                "Content-type": "application/json",
-            },
-            body: JSON.stringify(user)
-        })
-        .then(res => res.json())
-        .then(data => {
-            localStorage.setItem("token", data.token)
-        })
-    }
-
-    useEffect(()=>{
-        fetch("http://localhost:3000/getUsername", {
-            headers: {
-                "x-access-token" : localStorage.getItem("token")
-            }
-        })
-        .then(res => res.json())
-        .then(data => data.isLoggedIn ? history.push("/"):null)
-    })
 
     return(
-        <form onSubmit={event => handleLogin(event)}>
-            <input required type="text" name="username"/>
-            <input required type="password" name="password"/>
-            <input type="submit" value="Submit"/>
-        </form>
+        <>
+            {invalidMessage ?
+                <p className='error'>Invalid Username or Password</p>
+            : null
+            }   
+            <form onSubmit={event => handleSubmit(event)}>
+                <label htmlFor='username'>Username:</label>
+                <input required type="text" name="username"/>
+                <br/>
+                <br/>
+                <label htmlFor='password'>Password:</label>
+                <input required type="password" name="password"/>
+                <br/>
+                <br/>
+                <input type="submit" value="Login"/>
+            </form>    
+            <div>
+                <h1>Don't have an account?</h1>
+                <Link to="/register">Register</Link>
+            </div>
+        </>
+
     )
 }
 

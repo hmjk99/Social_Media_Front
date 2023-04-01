@@ -8,7 +8,8 @@ const Nav = (props)=>{
 
     const logout = async ()=> {
         localStorage.removeItem("token")
-        history.push("http://localhost:3000/login")
+        history.push("/login")
+        window.location.reload();
     }
 
     useEffect(()=>{

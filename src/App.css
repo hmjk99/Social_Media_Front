@@ -75,3 +75,6 @@ width: 3rem
 .date{
   margin: 0
 }
+.error{
+  color: red
+}
