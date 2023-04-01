@@ -8,6 +8,8 @@ background-color: rgb(169, 199, 203);
 .add-button{
   margin-top:8rem;
   margin-bottom:.5rem;
+  background-color: rgb(160, 179, 189);
+  border-radius: 3px;
 }
 .back:hover{
 cursor: pointer;
@@ -54,18 +56,6 @@ width: 3rem
 .elipse:hover{
   color: grey;
 }
-.modal{
-  display:flex;
-  flex-flow: column;
-  align-items: center;
-  justify-content: space-between;
-  position: absolute;
-  z-index: 0;
-  width:7rem;
-  background-color: rgba(197, 193, 193, 0.55);
-  padding:3px;
-  border-radius: 4%;
-}
 #edit{
   width: 35rem;
   text-align: center;
@@ -80,8 +70,6 @@ width: 3rem
   display: flex;
   justify-content: space-between;
   margin-bottom: .5rem;
-  width:30%;
-  margin:auto;
 }
 #home, #profile{
   margin: 1rem 3rem 
@@ -104,15 +92,15 @@ display:flex;
 flex-direction: column;
 position:fixed;
 top:0;
-background-color: rgb(176, 107, 171);
+background-color: rgb(70, 93, 122);
 width:100%;
 height:5rem;
 border-bottom: 3px solid whitesmoke;
 align-items: center;
 }
 .header img{
-height:50%;
-width:20%;
+height:3rem;
+width:12rem;;
 }
 .like-button{
 width:20%;
@@ -133,8 +121,23 @@ width:20%;
   align-self: center;
   box-shadow: 2px 2px .4rem grey;
 }
+.modal {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: space-between;
+  position: absolute;
+  z-index: 0;
+  width: 7rem;
+  background-color: rgba(197, 193, 193, 0.55);
+  padding: 3px;
+  border-radius: 4%;
+}
 .modal-button{
-  margin:5px;
+  margin:3px;
+  width:4rem;
+  background-color: rgb(160, 179, 189);
+  border-radius:4px
 }
 .post-image{
   display: flex;
