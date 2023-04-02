@@ -37,6 +37,7 @@ const App=()=>{
     })
   }
   const handleDelete = (data) =>{
+    console.log(data)
     axios.delete('http://localhost:3000/' + data._id).then(()=>{
       let newPost = posts.filter((each)=>{
         return each._id !== data._id

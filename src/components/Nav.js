@@ -22,6 +22,9 @@ const Nav = (props)=>{
         .then(data => data.isLoggedIn ? setUsername(data.username): null)
     }, [])
     return(
+    <>
+    <div className="header">
+    <img src="https://i.imgur.com/Nvxelxh.png" alt="" />
         <div id="nav">
             {username ?
             <>
@@ -34,8 +37,8 @@ const Nav = (props)=>{
                 <div><Link to="/register">Register</Link></div>               
             </>
             }
-
         </div>
+        </>
     )
 }
 

@@ -20,11 +20,13 @@ const handleCurrentImage = (num) => {
       return (
         <div className='post-image'>
         {props.each.image.length > 1 ?
-        <button onClick={() => handleCurrentImage(-1)}>previous</button>
+        <button className='carousel-button' onClick={() => handleCurrentImage(-1)}><i class='bx bx-chevrons-left' size="lg" ></i></button>
         : null}
+      <div className="image-container">
           <img className='img-post' src={props.each.image[currentImage]} alt="" />
+        </div>
           {props.each.image.length > 1 ?
-          <button onClick={() => handleCurrentImage(+1)}>next</button>
+          <button className='carousel-button' onClick={() => handleCurrentImage(+1)}><i className='bx bx-chevrons-right'></i></button>
           : null}
         </div>
       );
