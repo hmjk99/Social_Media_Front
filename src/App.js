@@ -53,23 +53,6 @@ const App=()=>{
     })
   }
 
-  // const handleEditUser = (data) =>{
-  //   axios.put('http://localhost:3000/user/' + data._id, data).then(()=>{
-  //     let newUser = user.map((each)=>{
-  //       return each._id !== data._id ? each : data
-  //     })
-  //     setUser(newUser)
-  //   })
-  // }
-  // const handleDeleteUser = (data) =>{
-  //   axios.delete('http://localhost:3000/user/' + data._id).then(()=>{
-  //     let newUser = user.filter((each)=>{
-  //       return each._id !== data._id
-  //     })
-  //     setUser(newUser)
-  //   })
-  // }
-
   // =========== display functions ===========//
 
   const showHome = () =>{
@@ -98,28 +81,30 @@ const App=()=>{
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'/>
       </head>
       <Nav showHome={showHome} showProfile={showProfile}/>
-      {displayHome ?
-      <>
-        {displayAdd ? <Add handleCreate={handleCreate} showAdd={showAdd}/> : null}
-        {posts.map((each)=>{
-          return(
-            <div className='posts-content'>
-              <Posts each={each} handleEdit={handleEdit} handleDelete={handleDelete}/>
-            </div>
-          )
-        })}
-      </> 
-      : null
-      }
-      {displayProfile ? 
-        <Profile user={user}/>
+      <div id='body'>
+        {displayHome ?
+        <>
+          {displayAdd ? <Add handleCreate={handleCreate} showAdd={showAdd}/> : null}
+          {posts.map((each)=>{
+            return(
+              <div className='posts-content'>
+                <Posts each={each} handleEdit={handleEdit} handleDelete={handleDelete}/>
+              </div>
+            )
+          })}
+        </> 
         : null
-      }
-      {/* // ============== user auth routes ==========// */}
-        <Switch>
-          <Route path="/register" component={Register} exact />
-          <Route path="/login" component={Login} exact />
-        </Switch>
+        }
+        {displayProfile ? 
+          <Profile user={user}/>
+          : null
+        }
+        {/* // ============== user auth routes ==========// */}
+          <Switch>
+            <Route path="/register" component={Register} exact />
+            <Route path="/login" component={Login} exact />
+          </Switch>
+        </div>
     </div>
     </BrowserRouter>
   );

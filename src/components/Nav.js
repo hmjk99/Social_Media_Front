@@ -21,6 +21,7 @@ const Nav = (props)=>{
         .then(res => res.json())
         .then(data => data.isLoggedIn ? setUsername(data.username): null)
     }, [])
+
     return(
     <>
     <div className="header">
@@ -38,8 +39,8 @@ const Nav = (props)=>{
             </>
             }
         </div>
-        </>
-    )
-}
+    </div>
+    </>
+)}
 
 export default Nav
