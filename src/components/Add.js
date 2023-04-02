@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 
 const Add = (props) =>{
     const [imagesArray, setImagesArray] = useState([])
@@ -14,35 +14,43 @@ const Add = (props) =>{
             text:''
         }
     )
+    const [username, setUsername] = useState(null)
+
     const handleTagCount = (event) => {
         event.preventDefault()
         setTagsNum(tagsNum + 1)
     }
+    
     const handleImageCount = (event) => {
         event.preventDefault()
         setImagesNum(imagesNum + 1)
     }
+    
     const handleChange = (event) =>{
         setPosts({...posts, [event.target.name]: event.target.value})
     }
+    
     const handleSubmit = (event) =>{
     console.log(posts)
         event.preventDefault()
         props.handleCreate(posts)
         props.showAdd()
     }
+    
     const handleTags = (event) =>{
       let newTags = tagsArray
         newTags.push(event.target.value)
         setPosts({...posts, [event.target.name]:newTags})
         setTagsArray(newTags)
     }
+    
     const handleImages = (event) => {
       let newImages = imagesArray
       newImages.push(event.target.value)
       setImagesArray(newImages)
       setPosts({...posts, [event.target.name]:newImages})
     }
+    
     const addTag = () =>{
         let tagCount = []
         for (let i=0; i < tagsNum; i++){
@@ -55,6 +63,7 @@ const Add = (props) =>{
         }
         return tagCount
     }
+    
     const addImage = () =>{
         let imageCount = []
         for (let i=0; i < imagesNum; i++){
@@ -67,8 +76,22 @@ const Add = (props) =>{
                 return imageCount
         
     }
+
+    useEffect(()=>{
+        fetch("http://localhost:3000/getUsername", {
+            headers: {
+                "x-access-token": localStorage.getItem("token")
+            }
+        })
+        .then(res => res.json())
+        .then(data => data.isLoggedIn ? setUsername(data.username): null)
+    }, [])
+
     return(
         <div id='add'>
+            {username ?
+            <>
+            <button onClick={props.showAdd}>Add Post</button>
             <form onSubmit={handleSubmit}>
                 <label htmlFor='date'>Date:</label>
                 <input type='text' name='date' onChange={handleChange} placeholder='mm/dd/yyyy'/>
@@ -87,7 +110,11 @@ const Add = (props) =>{
                 <br/>
                 <br/>
                 <input type="submit"/>
-            </form>
+            </form>           
+            </>
+            : null
+            }
+
         </div>
     )
 }

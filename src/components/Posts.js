@@ -1,27 +1,43 @@
 import Carousel from './Carousel'
 import EditModal from './EditModal'
 import Edit from "./Edit.js";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const Posts = (props)=>{
     const [displayEdit, setEdit] = useState(false)
     const [posts, setPosts] = useState({...props.each})
+    const [username, setUsername] = useState(null)
+
     const showEdit = () => {
       setEdit(!displayEdit)
     };
-const handleLikes = (event) =>{
-    const updatedPost = { ...posts, [event.target.name]: event.target.value}
-    setPosts(updatedPost);
-    setLikes(updatedPost)
-    console.log('clicked!',posts)
-}   
-const setLikes = (posts) => {
-    props.handleEdit(posts);
-}
+    const handleLikes = (event) =>{
+      const updatedPost = { ...posts, [event.target.name]: event.target.value}
+      setPosts(updatedPost);
+      setLikes(updatedPost)
+      console.log('clicked!',posts)
+    }   
+    
+    const setLikes = (posts) => {
+      props.handleEdit(posts);
+    }
+    
+    useEffect(()=>{
+      fetch("http://localhost:3000/getUsername", {
+        headers: {
+            "x-access-token": localStorage.getItem("token")
+        }
+      })
+      .then(res => res.json())
+      .then(data => data.isLoggedIn ? setUsername(data.username): null)
+    }, [])
+
     return(
     <>
         <div className="Post">
-            <div className='post-top'>
+            {username ?
+            <>
+                <div className='post-top'>
                 <h3 className='date'>{props.each.date}</h3>
                 <EditModal each={props.each} handleDelete={props.handleDelete} showEdit={showEdit}/>
             </div>
@@ -48,7 +64,6 @@ const setLikes = (posts) => {
                     </div>
                 </>
             }
-
         </div>
         <div className="divider"></div>
         </>

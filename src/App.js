@@ -1,15 +1,18 @@
 import {useState, useEffect} from 'react'
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import Register from './components/register'
+import Login from './components/login'
+import Profile from './components/Profile'
 import axios from 'axios'
 import Posts from './components/Posts'
 import Add from './components/Add'
-import Users from './components/Users'
 import Nav from './components/Nav'
 import './App.css';
 
 const App=()=>{
   //============ states ==============//
   const [posts, setPosts] = useState([])
-  const [users, setUsers] = useState([])
+  const [user, setUser] = useState([])
   const [displayHome, setHome] = useState(true)
   const [displayProfile, setProfile] = useState(false)
   const [displayAdd, setAdd] = useState(false)
@@ -43,11 +46,29 @@ const App=()=>{
     })
   }
 
+  // ================== requests for user ===============//
   const getUser = () =>{
     axios.get('http://localhost:3000/user').then((response)=>{
-      setUsers(response.data)
+      setUser(response.data)
     })
   }
+
+  // const handleEditUser = (data) =>{
+  //   axios.put('http://localhost:3000/user/' + data._id, data).then(()=>{
+  //     let newUser = user.map((each)=>{
+  //       return each._id !== data._id ? each : data
+  //     })
+  //     setUser(newUser)
+  //   })
+  // }
+  // const handleDeleteUser = (data) =>{
+  //   axios.delete('http://localhost:3000/user/' + data._id).then(()=>{
+  //     let newUser = user.filter((each)=>{
+  //       return each._id !== data._id
+  //     })
+  //     setUser(newUser)
+  //   })
+  // }
 
   // =========== display functions ===========//
 
@@ -71,6 +92,7 @@ const App=()=>{
   }, [])
 
   return (
+    <BrowserRouter>
     <div id='whole'>
       <head>
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'/>
@@ -78,7 +100,6 @@ const App=()=>{
       <Nav showHome={showHome} showProfile={showProfile}/>
       {displayHome ?
       <>
-        <button className='add-button' onClick={showAdd}>Add Post</button>
         {displayAdd ? <Add handleCreate={handleCreate} showAdd={showAdd}/> : null}
         {posts.map((each)=>{
           return(
@@ -91,10 +112,16 @@ const App=()=>{
       : null
       }
       {displayProfile ? 
-        <Users users={users}/>
+        <Profile user={user}/>
         : null
       }
+      {/* // ============== user auth routes ==========// */}
+        <Switch>
+          <Route path="/register" component={Register} exact />
+          <Route path="/login" component={Login} exact />
+        </Switch>
     </div>
+    </BrowserRouter>
   );
 }
 
