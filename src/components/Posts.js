@@ -38,35 +38,37 @@ const Posts = (props)=>{
             {username ?
             <>
                 <div className='post-top'>
-                <h3 className='date'>{props.each.date}</h3>
-                <EditModal each={props.each} handleDelete={props.handleDelete} showEdit={showEdit}/>
-            </div>
-            <Carousel each={props.each} />
-            {displayEdit ? 
-                <Edit each={props.each} handleEdit={props.handleEdit} showEdit={showEdit}/>
-                : 
-                <>
-                    <div className='likes-tags'>
-                        <button className='like-button' name="likes" 
-                        value={parseInt(posts.likes) + 1} 
-                        onClick={handleLikes} > 
-                        <i className='bx bx-like'></i>
-                        like</button>
-                        <span>Likes: {posts.likes}</span>
-                        {props.each.tags.map((tag)=>{
-                            return(
-                                <span className='post-tags'>{tag}</span>
-                            )
-                        })}
-                    </div>
-                    <div className="post-text">
-                    <p>{props.each.text}</p> 
-                    </div>
-                </>
-            }
+                  <h3 className='date'>{props.each.date}</h3>
+                  <EditModal each={props.each} handleDelete={props.handleDelete} showEdit={showEdit}/>
+                </div>
+                <Carousel each={props.each} />
+                {displayEdit ? 
+                    <Edit each={props.each} handleEdit={props.handleEdit} showEdit={showEdit}/>
+                    : 
+                    <>
+                        <div className='likes-tags'>
+                            <button className='like-button' name="likes" 
+                            value={parseInt(posts.likes) + 1} 
+                            onClick={handleLikes} > 
+                            <i className='bx bx-like'></i>
+                            like</button>
+                            <span>Likes: {posts.likes}</span>
+                            {props.each.tags.map((tag)=>{
+                                return(
+                                    <span className='post-tags'>{tag}</span>
+                                )
+                            })}
+                        </div>
+                        <div className="post-text">
+                        <p>{props.each.text}</p> 
+                        </div>
+                    </>
+                }
+              </>
+              : null
+              }
         </div>
-        <div className="divider"></div>
-        </>
+    </>
     )
 }
 

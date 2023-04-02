@@ -176,7 +176,10 @@ background-color: rgb(220, 223, 225);
 }
 .error{
   color: red
- }
+}
+#body{
+  margin-top:5rem
+}
 @media (max-width:600px){
 .modal{
   right:2.5rem;
@@ -191,4 +194,5 @@ width:96vw;
 }
 #edit{
 width:70%;
+}
 }
