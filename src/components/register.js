@@ -39,39 +39,42 @@ const Register = () =>{
 
 
     return(
-        <>
-        {invalidMessage ?
-        <p className='error'>Username already exists</p>
-        : null
-        }
-       <form onSubmit={event => handleRegister(event)}>
-            <label htmlFor='name'>Name:</label>
-            <input required type="text" name="name"/>
-            <br/>
-            <br/>
-            <label htmlFor='username'>Username:</label>
-            <input required type="text" name="username"/>
-            <br/>
-            <br/>
-            <label htmlFor='password'>Password:</label>
-            <input required type="password" name="password"/>
-            <br/>
-            <br/>
-            <label htmlFor='image'>Image:</label>
-            <input required type="text" name="image"/>
-            <br/>
-            <br/>
-            <label htmlFor='bio'>Bio:</label>
-            <input required type="text" name="bio"/>
-            <br/>
-            <br/>
-            <input type="submit" value="Register"/>
-        </form>
-        <div>
-            <h1>Already have an account?</h1>
-            <Link to="/login">Login</Link>
+        <div className='auth-whole'>
+          <div className='auth-title'>
+            <h2>Register Now!</h2>
+            <h2>Welcome to</h2>
+            <h1 className='logo'>stackbook</h1>
+          </div>
+          <div className='auth-content'>
+            {invalidMessage ?
+                <p className='error'>Username already exists</p>
+                : null
+            }
+            <form onSubmit={event => handleRegister(event)}>
+                <input className='auth-input' required type="text" name="name" placeholder='First Last Name'/>
+                <br/>
+                <br/>
+                <input className='auth-input' required type="text" name="username" placeholder='Username'/>
+                <br/>
+                <br/>
+                <input className='auth-input' required type="password" name="password" placeholder='Password'/>
+                <br/>
+                <br/>
+                <input className='auth-input' required type="text" name="image" placeholder='Image URL'/>
+                <br/>
+                <br/>
+                <input className='auth-input' required type="text" name="bio"
+                placeholder='Bio'/>
+                <br/>
+                <br/>
+                <input className='auth-submit' type="submit" value="Register"/>
+            </form>
+            <div className='auth-link'>
+                <h4>Already have an account?</h4>
+                <Link to="/login">Login</Link>
+            </div>
+          </div>
         </div>
-        </>
  
     )
 }

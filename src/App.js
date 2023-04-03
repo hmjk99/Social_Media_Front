@@ -79,6 +79,9 @@ const App=()=>{
     <div id='whole'>
       <head>
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'/>
+        <style>
+          @import url('https://fonts.googleapis.com/css2?family=Arimo&family=Russo+One&display=swap');
+        </style>
       </head>
       <Nav showHome={showHome} showProfile={showProfile}/>
       <div id='body'>
@@ -87,9 +90,7 @@ const App=()=>{
           {displayAdd ? <Add handleCreate={handleCreate} showAdd={showAdd}/> : null}
           {posts.map((each)=>{
             return(
-              <div className='posts-content'>
                 <Posts each={each} handleEdit={handleEdit} handleDelete={handleDelete}/>
-              </div>
             )
           })}
         </> 

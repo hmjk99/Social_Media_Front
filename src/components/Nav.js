@@ -24,22 +24,15 @@ const Nav = (props)=>{
 
     return(
     <>
-    <div className="header">
-    <img src="https://i.imgur.com/Nvxelxh.png" alt="" />
-        <div id="nav">
-            {username ?
-            <>
-                <h3 id='home' onClick={props.showHome}>Home</h3>           
-                <h3 id='profile' onClick={props.showProfile}>Profile</h3>
-                <div onClick={logout}>Logout</div>            
-            </>
-            : <>         
-                <div><Link to="/login">Login</Link></div>
-                <div><Link to="/register">Register</Link></div>               
-            </>
-            }
-        </div>
-    </div>
+        {username ?
+        <div id='nav'>
+            <h3 className='logo' id='home-logo'>stackbook</h3>
+            <h3 id='home' onClick={props.showHome}>Home</h3>           
+            <h3 id='profile' onClick={props.showProfile}>Profile</h3>
+            <h3 id='logout' onClick={logout}>Logout</h3>   
+        </div>         
+        :null
+        }
     </>
 )}
 

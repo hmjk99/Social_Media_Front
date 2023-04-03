@@ -34,27 +34,31 @@ const Login = () =>{
 
 
     return(
-        <>
+        <div className='auth-whole'>
+          <div className='auth-title'>
+            <h2>Welcome back to</h2>
+            <h1 className='logo'>stackbook</h1>
+          </div>
+          <div className='auth-content'>
             {invalidMessage ?
                 <p className='error'>Invalid Username or Password</p>
             : null
             }   
             <form onSubmit={event => handleSubmit(event)}>
-                <label htmlFor='username'>Username:</label>
-                <input required type="text" name="username"/>
+                <input className='auth-input' required type="text" name="username" placeholder='Username'/>
                 <br/>
                 <br/>
-                <label htmlFor='password'>Password:</label>
-                <input required type="password" name="password"/>
+                <input className='auth-input' required type="password" name="password" placeholder='Password'/>
                 <br/>
                 <br/>
-                <input type="submit" value="Login"/>
+                <input className='auth-submit' type="submit" value="Login"/>
             </form>    
-            <div>
-                <h1>Don't have an account?</h1>
+            <div className='auth-link'>
+                <h4>Don't have an account?</h4>
                 <Link to="/register">Register</Link>
             </div>
-        </>
+          </div>
+        </div>
 
     )
 }
