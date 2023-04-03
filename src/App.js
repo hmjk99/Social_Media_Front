@@ -18,18 +18,18 @@ const App=()=>{
   const [displayAdd, setAdd] = useState(false)
   //============ requests ==============//
   const getPost = () =>{
-    axios.get('http://localhost:3000/').then((response)=>{
+    axios.get('https://frendli.herokuapp.com/').then((response)=>{
       setPosts(response.data)
     })
   }
   const handleCreate = (data) =>{
-    axios.post('http://localhost:3000/', data).then((response)=>{
+    axios.post('https://frendli.herokuapp.com/', data).then((response)=>{
       let newPost = [...posts, response.data]
       setPosts(newPost)
     })
   }
   const handleEdit = (data) =>{
-    axios.put('http://localhost:3000/' + data._id, data).then(()=>{
+    axios.put('https://frendli.herokuapp.com/' + data._id, data).then(()=>{
       let newPost = posts.map((each)=>{
         return each._id !== data._id ? each : data
       })
@@ -38,7 +38,7 @@ const App=()=>{
   }
   const handleDelete = (data) =>{
     console.log(data)
-    axios.delete('http://localhost:3000/' + data._id).then(()=>{
+    axios.delete('https://frendli.herokuapp.com/' + data._id).then(()=>{
       let newPost = posts.filter((each)=>{
         return each._id !== data._id
       })
@@ -48,7 +48,7 @@ const App=()=>{
 
   // ================== requests for user ===============//
   const getUser = () =>{
-    axios.get('http://localhost:3000/user').then((response)=>{
+    axios.get('https://frendli.herokuapp.com/user').then((response)=>{
       setUser(response.data)
     })
   }

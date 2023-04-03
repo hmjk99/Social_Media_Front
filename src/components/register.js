@@ -19,7 +19,7 @@ const Register = () =>{
 
         }
 
-        fetch('http://localhost:3000/register', {
+        fetch('https://frendli.herokuapp.com/register', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',

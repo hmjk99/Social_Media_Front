@@ -78,7 +78,7 @@ const Add = (props) =>{
     }
 
     useEffect(()=>{
-        fetch("http://localhost:3000/getUsername", {
+        fetch("https://frendli.herokuapp.com/getUsername", {
             headers: {
                 "x-access-token": localStorage.getItem("token")
             }

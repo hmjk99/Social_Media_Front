@@ -9,7 +9,7 @@ const Profile = (props) =>{
     const [displayEdit, setEdit] = useState(false);
 
     const handleEdit = (data) =>{
-        axios.put('http://localhost:3000/user/' + data._id, data).then(()=>{
+        axios.put('https://frendli.herokuapp.com/user/' + data._id, data).then(()=>{
           let newUser = user.map((each)=>{
             return each._id !== data._id ? each : data
           })
@@ -18,7 +18,7 @@ const Profile = (props) =>{
       }
 
     const handleDelete = (data) =>{
-        axios.delete('http://localhost:3000/user/' + data._id).then(()=>{
+        axios.delete('https://frendli.herokuapp.com/user/' + data._id).then(()=>{
           let newUser = user.filter((each)=>{
             return each._id !== data._id
           })
@@ -31,7 +31,7 @@ const Profile = (props) =>{
     }
 
     useLayoutEffect(()=>{
-        fetch("http://localhost:3000/getUsername", {
+        fetch("https://frendli.herokuapp.com/getUsername", {
             headers: {
                 "x-access-token": localStorage.getItem("token")
             }
