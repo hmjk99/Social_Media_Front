@@ -1,27 +1,35 @@
 import {useState, useEffect} from 'react'
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import Register from './components/register'
+import Login from './components/login'
+import Profile from './components/Profile'
 import axios from 'axios'
 import Posts from './components/Posts'
 import Add from './components/Add'
+import Nav from './components/Nav'
 import './App.css';
 
 const App=()=>{
   //============ states ==============//
   const [posts, setPosts] = useState([])
-
+  const [user, setUser] = useState([])
+  const [displayHome, setHome] = useState(true)
+  const [displayProfile, setProfile] = useState(false)
+  const [displayAdd, setAdd] = useState(false)
   //============ requests ==============//
   const getPost = () =>{
-    axios.get('http://localhost:3000/').then((response)=>{
+    axios.get('https://frendli.herokuapp.com/').then((response)=>{
       setPosts(response.data)
     })
   }
   const handleCreate = (data) =>{
-    axios.post('http://localhost:3000/', data).then((response)=>{
+    axios.post('https://frendli.herokuapp.com/', data).then((response)=>{
       let newPost = [...posts, response.data]
       setPosts(newPost)
     })
   }
   const handleEdit = (data) =>{
-    axios.put('http://localhost:3000/' + data._id, data).then(()=>{
+    axios.put('https://frendli.herokuapp.com/' + data._id, data).then(()=>{
       let newPost = posts.map((each)=>{
         return each._id !== data._id ? each : data
       })
@@ -29,7 +37,8 @@ const App=()=>{
     })
   }
   const handleDelete = (data) =>{
-    axios.delete('http://localhost:3000/' + data._id).then(()=>{
+    console.log(data)
+    axios.delete('https://frendli.herokuapp.com/' + data._id).then(()=>{
       let newPost = posts.filter((each)=>{
         return each._id !== data._id
       })
@@ -37,20 +46,68 @@ const App=()=>{
     })
   }
 
+  // ================== requests for user ===============//
+  const getUser = () =>{
+    axios.get('https://frendli.herokuapp.com/user').then((response)=>{
+      setUser(response.data)
+    })
+  }
+
+  // =========== display functions ===========//
+
+  const showHome = () =>{
+    setHome(true)
+    setProfile(false)
+  }
+
+  const showProfile = () =>{
+    setHome(false)
+    setProfile(true)
+  }
+
+  const showAdd = () =>{
+    setAdd(!displayAdd)
+  }
+
   useEffect(()=>{
     getPost()
+    getUser()
   }, [])
 
   return (
-    <div>
-      <h1>React App</h1>
-      <Add handleCreate={handleCreate}/>
-      {posts.map((each)=>{
-        return(
-          <Posts each={each}/>
-        )
-      })}
+    <BrowserRouter>
+    <div id='whole'>
+      <head>
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'/>
+        <style>
+          @import url('https://fonts.googleapis.com/css2?family=Arimo&family=Russo+One&display=swap');
+        </style>
+      </head>
+      <Nav showHome={showHome} showProfile={showProfile}/>
+      <div id='body'>
+        {displayHome ?
+        <>
+          {displayAdd ? <Add handleCreate={handleCreate} showAdd={showAdd}/> : null}
+          {posts.map((each)=>{
+            return(
+                <Posts each={each} handleEdit={handleEdit} handleDelete={handleDelete}/>
+            )
+          })}
+        </> 
+        : null
+        }
+        {displayProfile ? 
+          <Profile user={user}/>
+          : null
+        }
+        {/* // ============== user auth routes ==========// */}
+          <Switch>
+            <Route path="/register" component={Register} exact />
+            <Route path="/login" component={Login} exact />
+          </Switch>
+        </div>
     </div>
+    </BrowserRouter>
   );
 }
 

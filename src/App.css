@@ -1,38 +1,247 @@
-.App {
-  text-align: center;
+body{
+background-color: rgb(169, 199, 203);
+font-family: 'Arimo', sans-serif;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+#body{
+  margin-top:5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+.logo{
+  font-family: 'Russo One', sans-serif;
+  color: rgb(70, 93, 122);
+  font-size: 3rem;
+  margin-top: 1rem
+}
+#home-logo{
+  font-size: 1.2rem;
+}
+.add-button{
+  margin-top:8rem;
+  margin-bottom:.5rem;
+  background-color: rgb(160, 179, 189);
+  border-radius: 3px;
+}
+.back:hover{
+cursor: pointer;
+color: grey;
+}
+.carousel-button{
+  border-radius:30%;
+  font-size: 1.5rem;
+  margin:4px;
+  line-height: 1rem;
+  border:2px solid rgb(164, 160, 160);
+  color:grey;
+}
+.carousel-button:active{
+background-color: rgba(149, 146, 146, 0.543);
+}
+.delete_modal {
+  position: fixed;
+  top:30%;
+  left:30%;
+  padding:3%;
+  background-color: rgba(197, 193, 193, 0.831);
+  border-radius:5px;
+}
+.edit-button{
+font-size: 40px;
+margin: 0;
+height: 2rem;
+width: 3rem
+}
+.edit-button:hover{
+ cursor: pointer;
+ color:grey;
+}
+.edit_modal{
+  position: fixed;
+  top: 30%;
+  left: 30%;
+  background-color: rgb(237, 227, 227);
+}
+.elipse{
+  font-size: 26px;
+}
+.elipse:hover{
+  color: grey;
+}
+#edit{
+  width: 35rem;
+  text-align: center;
+  padding: 4px;
+}
+#whole{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.Post{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  margin-bottom:2rem;
+  max-width: 33rem;
+  border-radius: 10px;
+  box-shadow:10px 0 .8rem rgba(112, 111, 111, 0.382) ;
+  padding: 1rem
+}
+.post-content{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.like-button{
+  background-color: white;
+  border: none;
+}
+.likes-tags{
+  display: flex;
+  width: 80%;
+  justify-content: space-around;
+  align-items: center;
+}
+.heart{
+  font-size: 1.5rem;
+}
+.img-post{
+  padding:5px;
+  height:20rem;
+  width:25rem;
+  object-fit: contain;
+  border-radius: 1rem;
+  box-shadow: 2px 2px .4rem grey;
+}
+.modal {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: space-between;
+  position: absolute;
+  z-index: 0;
+  width: 7rem;
+  background-color: rgba(197, 193, 193, 0.55);
+  padding: 3px;
+  border-radius: 4%;
+}
+.modal-button{
+  margin:3px;
+  width:4rem;
+  background-color: rgb(160, 179, 189);
+  border-radius:4px
+}
+.post-image{
+  display: flex;
+  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  margin-bottom: 1rem;
+  height: 50%;
+  width: 100%;
+}
+.post-tags{
+  background-color:rgb(70, 93, 122);
+  text-align: center;
+  border-radius: 5px;
+}
+.post-tags p{
   color: white;
+  margin: 10px;
+}
+.post-text::-webkit-scrollbar {
+  display: none;
+}
+.post-text{
+width:60%;
+max-height: 6rem;
+overflow-y: scroll;
+line-height: 1.4rem;
+margin:5px;
+}
+.post-top{
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  padding:1rem;
+}
+.date{
+  margin: 0
+}
+.error{
+  color: red
+}
+.auth-whole{
+  display: flex;
+}
+.auth-content{
+  background-color: white;
+  padding: 3rem;
+  border-radius: 15px;
+  box-shadow: 2px 2px .4rem grey;
+  margin: 2rem 0 0 3rem;
+  display: flex;
+  flex-direction: column;
+}
+.auth-title{
+  margin: 2rem 3rem 0 0;
+}
+.auth-title h2{
+  color: white
+}
+.auth-input{
+  width: 13rem;
+  height: 2.5rem;
+  border-radius: 10px;
+  border: 1px solid gray
+}
+::placeholder{
+  color: gray;
+  padding-left: 10px;
+}
+.auth-submit{
+  width: 5rem;
+  height: 2rem;
+  border-radius: 10px;
+  border: none;
+  background-color:rgb(70, 93, 122);
+  color:white;
+}
+.auth-link h4{
+  margin-bottom: 1rem
+}
+.auth-link a{
+  color:rgb(70, 93, 122);
+  font-size: 0.9rem;
+}
+#nav{
+  background-color: white;
+  width: 100%;
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+}
+#nav h3{
+  margin: 1rem
 }
 
-.App-link {
-  color: #61dafb;
-}
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+
+
+@media (max-width:600px){
+.modal{
+  right:2.5rem;
+}
+.img-post{
+min-width:15rem;
+width: 69vw;
+height:14rem;
+}
+.Post{
+width:96vw;
+}
+#edit{
+width:70%;
+}
 }
