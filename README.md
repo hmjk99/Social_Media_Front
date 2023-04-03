@@ -11,10 +11,14 @@
 ## features
     Stackbook has several custom-built features, 
     among them are: 
-    1. user authorization and authentication 
-    1. generative image carousels on user posts 
-    1. likes functionality 
-    1.and the ability to add mulitple images and tags on posts.
+    
+    user authorization and authentication 
+    
+    generative image carousels on user posts 
+    
+    likes functionality 
+    
+    the ability to add mulitple images and tags on posts.
     
 ## challenges
     Stackbook was developed in seven days by a team of two engineers, 
