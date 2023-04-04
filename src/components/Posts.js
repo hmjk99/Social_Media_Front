@@ -10,7 +10,8 @@ const Posts = (props)=>{
 
     const showEdit = () => {
       setEdit(!displayEdit)
-    };
+    }
+
     const handleLikes = (event) =>{
       const updatedPost = { ...posts, [event.target.name]: event.target.value}
       setPosts(updatedPost);
@@ -39,7 +40,7 @@ const Posts = (props)=>{
         <div className='post-content'>
           <div className='post-top'>
               <p className='date'>{props.each.date}</p>
-              <EditModal each={props.each} handleDelete={props.handleDelete} showEdit={showEdit}/>
+              <EditModal each={props.each} showEdit={showEdit} showDelete={props.showDelete}/>
             </div>
             <Carousel each={props.each} />
             {displayEdit ? 
@@ -47,14 +48,15 @@ const Posts = (props)=>{
                 : 
                 <>
                     <div className='likes-tags'>
-                        <button className='like-button' name="likes" value={parseInt(posts.likes) + 1} onClick={handleLikes} ><i class='heart bx bxs-heart' style={{color: '#bf0d0d'}}></i></button>                      
-                        <span>{posts.likes} likes</span>
+                        <button id='like-button' name="likes" value={parseInt(posts.likes) + 1} onClick={handleLikes} >❤️</button>                      
+                        <span id='likes'>{posts.likes} likes</span>
                         {props.each.tags.map((tag)=>{
                             return(
                                 <div className='post-tags'><p>{tag}</p></div>
                             )
                         })}
                     </div>
+                    <div className='divider'></div>
                     <div className="post-text">
                     <p>{props.each.text}</p> 
                     </div>

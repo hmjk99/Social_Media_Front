@@ -7,6 +7,7 @@ import axios from 'axios'
 import Posts from './components/Posts'
 import Add from './components/Add'
 import Nav from './components/Nav'
+import Delete from './components/Delete';
 import './App.css';
 
 const App=()=>{
@@ -15,7 +16,9 @@ const App=()=>{
   const [user, setUser] = useState([])
   const [displayHome, setHome] = useState(true)
   const [displayProfile, setProfile] = useState(false)
-  const [displayAdd, setAdd] = useState(false)
+  const [displayDelete, setDelete] = useState(false)
+
+
   //============ requests ==============//
   const getPost = () =>{
     axios.get('https://frendli.herokuapp.com/').then((response)=>{
@@ -44,6 +47,7 @@ const App=()=>{
       })
       setPosts(newPost)
     })
+    setDelete(false)
   }
 
   // ================== requests for user ===============//
@@ -65,9 +69,9 @@ const App=()=>{
     setProfile(true)
   }
 
-  const showAdd = () =>{
-    setAdd(!displayAdd)
-  }
+  const showDelete = (id) => {
+    setDelete(!displayDelete)
+  };
 
   useEffect(()=>{
     getPost()
@@ -83,14 +87,17 @@ const App=()=>{
           @import url('https://fonts.googleapis.com/css2?family=Arimo&family=Russo+One&display=swap');
         </style>
       </head>
-      <Nav showHome={showHome} showProfile={showProfile}/>
+      <Nav showHome={showHome} showProfile={showProfile} user={user}/>
       <div id='body'>
         {displayHome ?
         <>
-          {displayAdd ? <Add handleCreate={handleCreate} showAdd={showAdd}/> : null}
+          <Add handleCreate={handleCreate}/>
           {posts.map((each)=>{
             return(
-                <Posts each={each} handleEdit={handleEdit} handleDelete={handleDelete}/>
+              <>
+                <Posts each={each} handleEdit={handleEdit} showDelete={showDelete}/>
+                <Delete each={each} handleDelete={handleDelete} displayDelete={displayDelete} showDelete={showDelete}/>
+              </>
             )
           })}
         </> 

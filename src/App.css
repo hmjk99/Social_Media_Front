@@ -30,7 +30,7 @@ color: grey;
 .carousel-button{
   border-radius:30%;
   font-size: 1.5rem;
-  margin:4px;
+  margin:13px;
   line-height: 1rem;
   border:2px solid rgb(164, 160, 160);
   color:grey;
@@ -41,10 +41,15 @@ background-color: rgba(149, 146, 146, 0.543);
 .delete_modal {
   position: fixed;
   top:30%;
-  left:30%;
   padding:3%;
-  background-color: rgba(197, 193, 193, 0.831);
-  border-radius:5px;
+  background-color: white;
+  border: 2px solid rgb(70, 93, 122);
+  border-radius:15px;
+}
+#delete-content{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .edit-button{
 font-size: 40px;
@@ -68,10 +73,9 @@ width: 3rem
 .elipse:hover{
   color: grey;
 }
-#edit{
-  width: 35rem;
-  text-align: center;
-  padding: 4px;
+#edit form{
+  display: flex;
+  flex-direction: column;
 }
 #whole{
   display: flex;
@@ -82,21 +86,22 @@ width: 3rem
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: white;
   margin-bottom:2rem;
-  max-width: 33rem;
-  border-radius: 10px;
-  box-shadow:10px 0 .8rem rgba(112, 111, 111, 0.382) ;
-  padding: 1rem
 }
 .post-content{
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 33rem;
+  border-radius: 10px;
+  background-color: white;
+  box-shadow:10px 0 .8rem rgba(112, 111, 111, 0.382) ;
+  padding: 2rem
 }
-.like-button{
+#like-button{
   background-color: white;
   border: none;
+  font-size: 1.5rem;
 }
 .likes-tags{
   display: flex;
@@ -104,8 +109,18 @@ width: 3rem
   justify-content: space-around;
   align-items: center;
 }
+#likes{
+  margin-right: 8rem;
+  font-weight: 700;
+}
 .heart{
   font-size: 1.5rem;
+  color: #bf0d0d
+}
+.divider{
+  border: 1px solid rgb(70, 93, 122, 0.3);
+  width: 90%;
+  margin-top: 1rem;
 }
 .img-post{
   padding:5px;
@@ -119,19 +134,22 @@ width: 3rem
   display: flex;
   flex-flow: column;
   align-items: center;
-  justify-content: space-between;
   position: absolute;
   z-index: 0;
   width: 7rem;
-  background-color: rgba(197, 193, 193, 0.55);
-  padding: 3px;
-  border-radius: 4%;
+  background-color: white;
+  padding: 10px;
+  border-radius: 10px;
+  border: 3px solid rgb(70, 93, 122)
 }
 .modal-button{
   margin:3px;
-  width:4rem;
-  background-color: rgb(160, 179, 189);
-  border-radius:4px
+  width:6rem;
+  height: 2rem;
+  background-color: rgb(70, 93, 122);
+  color: white;
+  border-radius:10px;
+  border: none
 }
 .post-image{
   display: flex;
@@ -154,11 +172,8 @@ width: 3rem
   display: none;
 }
 .post-text{
-width:60%;
-max-height: 6rem;
-overflow-y: scroll;
+width:70%;
 line-height: 1.4rem;
-margin:5px;
 }
 .post-top{
   width: 80%;
@@ -167,7 +182,8 @@ margin:5px;
   padding:1rem;
 }
 .date{
-  margin: 0
+  margin: 0;
+  font-weight: 700;
 }
 .error{
   color: red
@@ -220,28 +236,191 @@ margin:5px;
   width: 100%;
   position: fixed;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
+  border-bottom: 5px solid rgb(70, 93, 122);
+  align-items: center;
+  z-index: 1;
 }
-#nav h3{
-  margin: 1rem
+#nav >*{
+  margin: 0.7rem
+}
+#home, #profile, #logout, button{
+  cursor: pointer;
+}
+#home{
+  font-size: 3rem;
+  color:rgb(70, 93, 122);
+}
+#profile{
+  object-fit: cover;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  border: 3px solid rgb(70, 93, 122);
+}
+#add{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#add-button{
+  margin-bottom: 1.5rem;
+  width: 10rem;
+  height: 2.5rem;
+  border: 2px solid rgb(70, 93, 122);
+  background-color: white;
+  color: rgb(70, 93, 122);
+  border-radius: 10px;
+  font-family: 'Arimo', sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+}
+#add form{
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  border-radius: 10px;
+}
+textarea{
+  resize: none;
+  height: 4rem;
+  font-family: 'Arimo', sans-serif;
+}
+.add-input{
+  width: 16rem;
+  height: 2rem;
+  border-radius: 10px;
+  border: 2px solid rgb(198, 198, 198)
+}
+.more{
+  width: 5rem;
+  height: 2rem;
+  border: 2px solid rgb(70, 93, 122);
+  background-color: white;
+  border-radius: 10px;
+  color: rgb(70, 93, 122);
+  font-family: 'Arimo', sans-serif;
+  margin-top: 1rem;
+}
+.add-submit{
+  background-color: rgb(70, 93, 122);
+  color: white;
+  height: 2.5rem;
+  width: 16rem;
+  border-radius: 10px;
+  border: none
+}
+.user{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#profile-pic{
+  width: 25rem;
+  height: 25rem;
+  border-radius: 50%;
+  border: 3px solid rgb(70, 93, 122);
+  object-fit: cover;
+  margin-top: 1rem
+}
+#user-info{
+  background-color: white;
+  border-radius: 15px;
+  padding: 1rem 2rem;
+  margin: 2rem
+}
+.profile-button{
+  width: 12rem;
+  height: 3rem;
+  margin: 1rem;
+  border: 2px solid rgb(70, 93, 122);
+  border-radius: 10px;
+  background-color: white;
+  color: rgb(70, 93, 122);
+  font-weight: 600;
+}
+#delete-user{
+  color: red;
+}
+#edit-user form{
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  border-radius: 10px;
 }
 
-
-
-
-@media (max-width:600px){
-.modal{
-  right:2.5rem;
+@media (max-width:650px){
+#nav{
+  justify-content: center;
+}
+.post-content{
+  width: 15rem
 }
 .img-post{
-min-width:15rem;
-width: 69vw;
-height:14rem;
+  height: 16rem;
+  width: 13rem
 }
-.Post{
-width:96vw;
+.carousel-button{
+  margin: 4px
 }
-#edit{
-width:70%;
+.likes-tags{
+  width: 18rem;
 }
+#likes{
+  margin: 0;
+}
+.post-tags p{
+  margin: 5px
+}
+.delete_modal{
+  width: 18rem
+}
+#delete-content h1{
+  margin-top: 0
+}
+#profile-pic{
+  width: 15rem;
+  height: 15rem
+}
+#user-info{
+  text-align: center;
+}
+#user-info h2{
+  font-size: 1.2rem;
+}
+.auth-whole{
+  flex-direction: column;
+  align-items: center;
+}
+.auth-content, .auth-title{
+  margin: 0
+}
+.auth-title h2, .auth-title h1{
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+.auth-content{
+  padding:2rem
+}
+#home{
+  font-size: 2rem;
+}
+#profile{
+  width: 2rem;
+  height: 2rem;
+}
+#logout{
+  font-size: 1rem;
+}
+}
+@media (max-width:390px){
+  .modal{
+    right:1.5rem
+  }
 }
