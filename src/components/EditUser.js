@@ -17,34 +17,33 @@ const EditUser = (props) => {
 
 
   return (
-    
-    <div id="edit">
-      <div>
-        <button id="edit" onClick={props.showEdit}>Edit Profile</button>
-        {props.displayEdit ? 
+    <>
+      <button className="profile-button" onClick={props.showEdit}>Edit Profile</button>
+      {props.displayEdit ? 
+      <div id="edit-user">
         <form onSubmit={handleSubmit}>
             <label htmlFor='name'>Name:</label>
-            <input required type="text" name="name" onChange={handleChange} value={user.name}/>
+            <input className='add-input' required type="text" name="name" onChange={handleChange} value={user.name}/>
             <br/>
             <br/>
             <label htmlFor='username'>Username:</label>
-            <input required type="text" name="username" onChange={handleChange} value={user.username}/>
+            <input className='add-input' required type="text" name="username" onChange={handleChange} value={user.username}/>
             <br/>
             <br/>
             <label htmlFor='image'>Image:</label>
-            <input required type="text" name="image" onChange={handleChange} value={user.image}/>
+            <input className='add-input' required type="text" name="image" onChange={handleChange} value={user.image}/>
             <br/>
             <br/>
             <label htmlFor='bio'>Bio:</label>
-            <input required type="text" name="bio" onChange={handleChange} value={user.bio}/>
+            <input className='add-input' required type="text" name="bio" onChange={handleChange} value={user.bio}/>
             <br/>
             <br/>
-            <input type="submit" value="Edit"/>
+            <input className='add-submit' type="submit" value="Edit"/>
         </form>
-        : null
-        }
       </div>
-    </div>
+      : null
+      }
+  </>
   );
 };
 

@@ -42,7 +42,7 @@ const Profile = (props) =>{
 
     
     return(
-        <div className="users">
+        <div className="user">
         {user
             .filter(each => each.username === username)
             .map((filteredData)=>{
@@ -50,15 +50,17 @@ const Profile = (props) =>{
                 <>
                 {displayEdit === false ?
                 <>
-                    <img src={filteredData.image}/>
+                <img id='profile-pic' src={filteredData.image}/>
+                <div id='user-info'>
                     <h2>Username: {filteredData.username}</h2>
                     <h2>Name: {filteredData.name}</h2>
                     <h2>Bio: {filteredData.bio}</h2>
+                </div>
                 </>
                 : null
                 }
                     <EditUser user={filteredData} handleEdit={handleEdit} showEdit={showEdit} displayEdit={displayEdit}/>
-                    <button onClick={()=>{handleDelete(filteredData)}}>Delete Account</button>
+                    <button className='profile-button' id='delete-user' onClick={()=>{handleDelete(filteredData)}}>Delete Account</button>
                 </>
             )
         })}

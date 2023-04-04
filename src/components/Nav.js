@@ -27,8 +27,12 @@ const Nav = (props)=>{
         {username ?
         <div id='nav'>
             <h3 className='logo' id='home-logo'>stackbook</h3>
-            <h3 id='home' onClick={props.showHome}>Home</h3>           
-            <h3 id='profile' onClick={props.showProfile}>Profile</h3>
+            <i class='bx bxs-home-smile' id='home' onClick={props.showHome}></i>
+            {props.user.filter(each => each.username === username).map((filteredData)=>{
+            return(
+                    <img id='profile' onClick={props.showProfile} src={filteredData.image}/>
+                )
+            })}
             <h3 id='logout' onClick={logout}>Logout</h3>   
         </div>         
         :null
