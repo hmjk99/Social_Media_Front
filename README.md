@@ -23,7 +23,6 @@ Demo Account:
 - Username: admin
 - Password: 1234
 
-Insert gif or link to demo
 ![Alt Text](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNmFhMTI1MDQxYjRjZjVkZDdjOTA2MTE2YTAxMDBhNWU0MGYyNjY1YyZlcD12MV9pbnRlcm5hbF9naWZzX2dpZklkJmN0PWc/yNKx7G5V0GvJfP0ktj/giphy.gif)
 
 ## Run Locally
